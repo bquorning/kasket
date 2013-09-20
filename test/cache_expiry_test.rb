@@ -28,7 +28,7 @@ class CacheExpiryTest < ActiveSupport::TestCase
 
     should "be removed from cache when updated" do
       @post.title = "new_title"
-      @post.save
+      @post.save!
       assert_nil(Kasket.cache.read(@post.kasket_key))
     end
 
