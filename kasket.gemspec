@@ -10,12 +10,10 @@ Gem::Specification.new do |s|
   s.description = "puts a cap on your queries"
   s.license     = "Apache License Version 2.0"
 
-  s.add_runtime_dependency("activerecord", ">= 3.2", "< 4.2")
+  s.add_runtime_dependency("activerecord", ">= 3.2", "< 4.3")
 
   s.add_development_dependency("rake")
   s.add_development_dependency("bundler")
-  s.add_development_dependency("appraisal", "~> 0.5.0") # 1.0.0 has new commands and produces incorrect rails 3.2 gemfile
-  s.add_development_dependency("mocha")
   s.add_development_dependency("wwtd")
   s.add_development_dependency("minitest")
   s.add_development_dependency("minitest-rg")

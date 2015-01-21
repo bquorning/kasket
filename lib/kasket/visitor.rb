@@ -3,6 +3,7 @@ require 'arel'
 module Kasket
   class Visitor < Arel::Visitors::Visitor
     def initialize(model_class, binds)
+      super()
       @model_class = model_class
       @binds       = binds.dup
     end

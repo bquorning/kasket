@@ -3,7 +3,7 @@ ActiveRecord::Base.configurations = YAML::load(IO.read(File.expand_path("databas
 conf = ActiveRecord::Base.configurations['test']
 `echo "drop DATABASE if exists #{conf['database']}" | mysql --user=#{conf['username']}`
 `echo "create DATABASE #{conf['database']}" | mysql --user=#{conf['username']}`
-ActiveRecord::Base.establish_connection('test')
+ActiveRecord::Base.establish_connection(:test)
 load(File.dirname(__FILE__) + "/schema.rb")
 
 class Comment < ActiveRecord::Base
