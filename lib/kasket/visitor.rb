@@ -13,6 +13,8 @@ module Kasket
       super
     end
 
+    private
+
     def last_column=(col)
       Thread.current[:arel_visitors_to_sql_last_column] = col
     end
@@ -29,7 +31,7 @@ module Kasket
       return :unsupported if node.with
       return :unsupported if node.offset
       return :unsupported if node.lock
-      return :unsupported if node.orders.any?
+      return :unsupported if !default_order?(node)
       return :unsupported if node.cores.size != 1
 
       query = visit_Arel_Nodes_SelectCore(node.cores[0])
@@ -143,6 +145,10 @@ module Kasket
 
     def quoted(node)
       @model_class.connection.quote(node)
+    end
+
+    def default_order?(node)
+      node.orders.reject { |o| o.is_a?(Arel::Nodes::Ascending) && o.expr.name == "id" }.empty?
     end
 
     alias :visit_String                :literal
